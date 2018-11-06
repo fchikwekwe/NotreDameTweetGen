@@ -1,4 +1,0 @@
-
-
-Current date and time: 2018-11-02 14:56:04.841588 
-Program ran in 0.045726 seconds.

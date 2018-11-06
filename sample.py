@@ -20,7 +20,7 @@ def binary_search(cumulative, target):
     left = 0
     right = len(cumulative) - 1
     while left < right:
-        middle = math.floor((left + right) / 2)
+        middle = int(math.floor((left + right) / 2))
         if cumulative[middle][1] == target:
             return middle
         elif cumulative[middle][1] < target:
@@ -48,4 +48,3 @@ def read_hist(text_file):
 if __name__ == '__main__':
 
     sample = sample(cumulative_distribution(read_hist("histogram.txt")))
-    print(sample)
