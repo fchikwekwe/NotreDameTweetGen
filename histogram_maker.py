@@ -71,7 +71,12 @@ def frequency(word, histogram):
 
 def logger(logger_file, data_structure, histogram, unique_words, word, frequency):
     f = open(logger_file, "a")
-    f.write("\n\nData Structure Type: {}\nHistogram: {}\nNumber of Unique Words: {}\nFrequency of the word '{}': {}".format(data_structure, histogram, unique_words, word, frequency))
+    f.write("""
+    Data Structure Type: {}
+    Histogram: {}
+    Number of Unique Words: {}
+    Frequency of the word '{}': {}
+    """.format(data_structure, histogram, unique_words, word, frequency))
 
 if __name__ in '__main__':
     source_text = get_source_text("souls_of_black_folk.txt")
