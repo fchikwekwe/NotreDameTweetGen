@@ -1,6 +1,7 @@
 venv/
 .DS_Store
 app.pyc
+histogram_maker.pyc
 
 
 # Created by https://www.gitignore.io/api/macos,flask,python
