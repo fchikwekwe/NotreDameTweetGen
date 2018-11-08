@@ -16,7 +16,17 @@ class Listogram(list):
 
     def add_count(self, word, count=1):
         """Increase frequency count of a given word by given count amount"""
-        # TODO: Increase frequency by count
+        # if word not in dictogram, add word; increment count, tokens, types
+        if word not in self:
+            count_and_word = []
+            count_and_word.append(word)
+            count_and_word.append(count)
+            self.append(count_and_word)
+            self.tokens += count
+            self.types += count
+        # if word is in dictogram, increment count, tokens
+        else:
+
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found"""
