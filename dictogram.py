@@ -16,11 +16,24 @@ class Dictogram(dict):
 
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount"""
-        # TODO: increase word frequency by count
+        # if word is not in dictogram, add word and increment count, tokens, types
+        if word not in self:
+            self[word] = 1
+            self.types += 1
+            self.tokens += 1
+        # if word is in dictogram, increment count, tokens
+        else:
+            self[word] += 1
+            self.tokens += 1
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found"""
-        # TODO: retrieve word frequency count
+        word_frequency = 0
+        for key in self:
+            if key == word:
+                word_frequency += 1
+                print(word_frequency)
+        return word_frequency
 
 def print_histogram(word_list):
     print('word list: {}'.format(word_list))
@@ -42,7 +55,7 @@ def main():
         print_histogram(list(word))
         # Test histogram on words in a log repetitive sentence
         woodchuck_text = ('how much wood would a wood chuck chuck'
-                        'if a wood chuck could chuck wood')
+                        ' if a wood chuck could chuck wood')
         print_histogram(woodchuck_text.split())
 
 if __name__ == '__main__':
