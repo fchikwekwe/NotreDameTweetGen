@@ -16,17 +16,19 @@ class Listogram(list):
 
     def add_count(self, word, count=1):
         """Increase frequency count of a given word by given count amount"""
-        # if word not in dictogram, add word; increment count, tokens, types
-        if word not in self:
-            count_and_word = []
-            count_and_word.append(word)
-            count_and_word.append(count)
-            self.append(count_and_word)
-            self.tokens += count
-            self.types += count
-        # if word is in dictogram, increment count, tokens
-        else:
-
+        for list in self:
+            # if word not in dictogram, add word; increment count, tokens, types
+            if word not in list:
+                count_and_word = []
+                count_and_word.append(word)
+                count_and_word.append(count)
+                self.append(count_and_word)
+                self.tokens += count
+                self.types += count
+            # if word is in dictogram, increment count, tokens
+            elif word == list[0]:
+                list[1] += count
+                self.tokens += count
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found"""
@@ -45,6 +47,7 @@ def print_histogram(word_list):
     print('word list: {}'.format(word_list))
     # create a listogram and display its contents
     histogram = Listogram(word_list)
+    print(histogram)
     print('listogram: {}'.format(histogram.tokens, histogram.types))
     for word in word_list[-2:]:
         freq = histogram.frequency(word)
