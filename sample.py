@@ -1,7 +1,6 @@
 import random
 import math
 import histogram_maker
-import timeit
 
 def cumulative_distribution(histogram):
     """compute the cumulative distribution function given pdf"""
@@ -46,6 +45,7 @@ def read_hist(text_file):
     return histogram
 
 def num_of_words(num):
+    """use this functions to return a certain number of totally random words"""
     all_words = []
     if num >= 1:
         for i in range(num):
@@ -57,6 +57,7 @@ def num_of_words(num):
     return all_words
 
 def print_sample():
+    """this function takes input and prints out the sample text for you"""
     import sys
     args = "".join(sys.argv[1:])
     num = int(args)
