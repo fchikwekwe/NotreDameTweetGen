@@ -45,6 +45,25 @@ def read_hist(text_file):
             histogram.append((hist_entry[0], int(hist_entry[1])))
     return histogram
 
-if __name__ == '__main__':
+def num_of_words(num):
+    all_words = []
+    if num >= 1:
+        for i in range(num):
+            word = sample(cumulative_distribution(read_hist("histogram.txt")))
+            all_words.append(word)
+    else:
+        word = sample(cumulative_distribution(read_hist("histogram.txt")))
+        all_words.append(word)
+    return all_words
 
-    sample = sample(cumulative_distribution(read_hist("histogram.txt")))
+def print_sample():
+    import sys
+    args = "".join(sys.argv[1:])
+    num = int(args)
+    list_sample = num_of_words(num)
+    sample = " ".join(list_sample)
+    print(sample)
+
+
+if __name__ == '__main__':
+    print_sample()

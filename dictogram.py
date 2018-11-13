@@ -44,11 +44,12 @@ def print_histogram(word_list):
         freq = histogram.frequency(word, word_list)
         print('{!r} occurs {} times'.format(word, freq))
     print()
+    return histogram
 
-def main():
-    import sys
-    arguments = sys.argv[1:]
-    if len(arguments) >= 1:
+def main(arguments):
+
+    # if a number is given as argument
+    if len(arguments) <= 1:
         # Test histogram on letters in a word
         word = 'abracadabra'
         print_histogram(list(word))
@@ -56,6 +57,11 @@ def main():
         woodchuck_text = ('how much wood would a wood chuck chuck'
                         ' if a wood chuck could chuck wood')
         print_histogram(woodchuck_text.split())
+    # if multiple arguments are given
+    else:
+        return print_histogram(arguments)
 
 if __name__ == '__main__':
-    main()
+    import sys
+    arguments = sys.argv[1:]
+    main(arguments)
