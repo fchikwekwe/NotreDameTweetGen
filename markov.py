@@ -16,7 +16,6 @@ def markov_model(text_list):
     for index in range(len(text_list) - 1):
         # text_list[index] should be our word from list
         word = text_list[index]
-        print("word: {}".format(word))
         # check if key is stored already
         if word in markov_dict:
             # if it is, then append it to the existing histogram
@@ -27,12 +26,15 @@ def markov_model(text_list):
     # return dictionary
     return markov_dict
 
-def create_sentence():
+def create_sentence(dictionary):
     sentence = []
-    for key, value in dictionary:
-
-
+    for key in dictionary:
+        if key != "sitting.":
+            sentence.append(key)
+    return sentence
 
 if __name__ == '__main__':
-    example_list = ["these", "words", "of", "my", "own", "are", "my", "own"]
-    print(markov_model(example_list))
+    example_list = ["And", "the", "Raven,", "never", "flitting,", "still", "is", "sitting,", "still", "is", "sitting."]
+    dictionary = markov_model(example_list)
+    markov_sentence = create_sentence(dictionary)
+    print(" ".join(markov_sentence))
