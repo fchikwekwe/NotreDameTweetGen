@@ -1,9 +1,29 @@
-h1 {
-    font-family: 'Playball', cursive;
-}
-.tweet {
-    font-family: 'Seaweed Script', cursive;
+body {
+    background-color: #cc9976;
 }
 
-/* font-family: 'Playball', cursive;
-font-family: 'Seaweed Script', cursive; */
+#tweet {
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+.tweet-intro {
+    font-family: 'El Messiri', sans-serif;
+}
+#tweet h1 {
+    font-family: 'Playball', cursive;
+}
+.btn, #tweet-button {
+    font-family: 'Nunito', cursive;
+    background-color: #cc9976;
+}
+#show-tweet {
+    font-family: 'Playball', cursive;
+}
+
+/*
+Fonts:
+font-family: 'Nunito', sans-serif;
+font-family: 'Playball', cursive;
+font-family: 'El Messiri', sans-serif;
+*/

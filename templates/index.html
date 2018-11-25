@@ -4,20 +4,36 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Import Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Playball|Seaweed+Script" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=El+Messiri|Nunito|Playball" rel="stylesheet">
         <!-- Import Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <!-- Import CSS Files -->
-        <link rel="stylesheet" href="../static/css/styles.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
         <title>Tweet Générateur de Notre-Dame de Paris</title>
     </head>
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6 offset-md-3 mx-auto tweet">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-8 mx-auto" id="tweet">
                     <h1>Tweet Générateur de Notre-Dame de Paris</h1>
-                    <h3>[On that morning,]...the Parisians awoke to the sound of all the bells in the triple circuit of the city...ringing...Thousands of...faces thronged the windows, the doors, the dormer windows, the roofs, gazing at the palace, gazing at the populace...</h3>
-                    <button type="submit" name="button">What do the bells say?</button>
+                    <h4 class="tweet-intro">[On that morning,]...the Parisians awoke to the sound of all the bells in the triple circuit of the city...ringing...</h4>
+                    <h4 class="tweet-intro">Thousands of...faces thronged the windows, the doors, the dormer windows, the roofs, gazing at the palace, gazing at the populace...</h4>
+                    <br>
+                    <br>
+                    <button id="tweet-button" type="submit" name="button">What do the bells say?</button>
+                    <br>
+                    <br>
+                    {% if sample_word %}
+                    <p class="show-tweet">{{ sample_word }}</p>
+                    {% else %}
+                    <p>...the bells of Notre Dame...</p>
+                    {% endif %}
+                </div>
+                <div class="col-md-2">
+
                 </div>
             </div>
         </div>
