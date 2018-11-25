@@ -1,9 +1,9 @@
-from flask import Flask
+from flask import Flask, render_template
 import sample
 
-app = Flask(__name__)
+APP = Flask(__name__)
 
-@app.route('/')
+@APP.route('/')
 def sample_function():
     sample_word = sample.sample(sample.cumulative_distribution(sample.read_hist("histogram.txt")))
     return sample_word

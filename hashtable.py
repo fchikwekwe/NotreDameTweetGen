@@ -87,9 +87,9 @@ class HashTable(object):
 
         # Check if key-value entry exists in bucket
         if key in bucket.items():
+            print("items: " + bucket.items())
             # If found, return value associated with given key
             return value
-
         # Otherwise, raise error
         raise KeyError('Key not found: {}'.format(key))
 
@@ -105,11 +105,11 @@ class HashTable(object):
             value = bucket.find(key)
             print("value: {}".format(value))
         else:
+            # Otherwise, insert given key-value entry into bucket
             new_pair = (key, value)
             bucket.append(new_pair)
             print("bucket: {}".format(bucket))
 
-        # Otherwise, insert given key-value entry into bucket
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
