@@ -1,7 +1,7 @@
 """ This class creates a LinkedList from scratch that can be used modularly in other files"""
 
 class Node(object):
-
+    """ inherits from Python object class; this creates a node to be used in LinkedList"""
     def __init__(self, data):
         """Initialize this node with the given data."""
         self.data = data
@@ -13,7 +13,7 @@ class Node(object):
 
 
 class LinkedList(object):
-
+    """ class docstring """
     def __init__(self, items=None):
         """Initialize this linked list and append the given items, if any."""
         self.head = None  # First node, begins as None
@@ -100,8 +100,7 @@ class LinkedList(object):
             if quality(current.data) is True:
                 found_quality = True
                 return current.data
-            else:
-                current = current.next
+            current = current.next
 
         # Check if node's data satisfies given quality function (quality is a function?)
 

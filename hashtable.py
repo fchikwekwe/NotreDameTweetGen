@@ -105,7 +105,8 @@ class HashTable(object):
             value = bucket.find(key)
             print("value: {}".format(value))
         else:
-            bucket.append((key, value))
+            new_pair = (key, value)
+            bucket.append(new_pair)
             print("bucket: {}".format(bucket))
 
         # Otherwise, insert given key-value entry into bucket
