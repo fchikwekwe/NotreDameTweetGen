@@ -67,4 +67,4 @@ def print_sample():
 
 
 if __name__ == '__main__':
-    print_sample()
+    print(" ".join(num_of_words(4))+ ".")
