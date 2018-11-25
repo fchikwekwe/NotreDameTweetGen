@@ -1,6 +1,10 @@
+""" This class creates a HashTable that can be used modularly in other files """
+
 from linkedlist import LinkedList
 
 class HashTable(object):
+    """ This class inherits from the python object class and its methods
+    lend functionality to a HashTable"""
 
     def __init__(self, init_size=8):
         """Initialize this hash table with the given initial size."""
@@ -27,7 +31,7 @@ class HashTable(object):
         # Collect all keys in each bucket
         all_keys = []
         for bucket in self.buckets:
-            for key, value in bucket.items():
+            for key in bucket.items():
                 all_keys.append(key)
         return all_keys
 
@@ -37,7 +41,7 @@ class HashTable(object):
         values = []
         # Loop through all buckets
         for bucket in self.buckets:
-            for key, value in bucket.items():
+            for value in bucket.items():
                 # Collect all values in each bucket
                 values.append(value)
         return values
@@ -71,8 +75,7 @@ class HashTable(object):
         if bucket_index:
             return True
         # else False
-        else:
-            return False
+        return False
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
@@ -80,15 +83,15 @@ class HashTable(object):
         # Find bucket where given key belongs
         bucket_index = self._bucket_index(key)
         bucket = self.buckets[bucket_index]
-        print("bucket: {}".format())
+        print("bucket: {}".format(bucket))
 
         # Check if key-value entry exists in bucket
         if key in bucket.items():
             # If found, return value associated with given key
             return value
-        else:
-            # Otherwise, raise error
-            raise KeyError('Key not found: {}'.format(key))
+
+        # Otherwise, raise error
+        raise KeyError('Key not found: {}'.format(key))
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
@@ -118,6 +121,7 @@ class HashTable(object):
 
 
 def test_hash_table():
+    """ tests implemented hashtable """
     ht = HashTable()
     print('hash table: {}'.format(ht))
 

@@ -1,3 +1,4 @@
+""" This class creates a LinkedList from scratch that can be used modularly in other files"""
 
 class Node(object):
 
