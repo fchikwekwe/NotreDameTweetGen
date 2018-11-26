@@ -29,22 +29,24 @@ class HashTable(object):
         """Return a list of all keys in this hash table.
         TODO: Running time: O(???) Why and under what conditions?"""
         # Collect all keys in each bucket
-        all_keys = []
+        keys_list = []
         for bucket in self.buckets:
-            for key in bucket.items():
-                all_keys.append(key)
-        return all_keys
+            print(bucket)
+            for key, value in bucket.items():
+                print("key: {}, value: {}".format(key, value))
+                keys_list.append(key)
+        return keys_list
 
     def values(self):
         """Return a list of all values in this hash table.
         TODO: Running time: O(???) Why and under what conditions?"""
-        values = []
+        values_list = []
         # Loop through all buckets
         for bucket in self.buckets:
-            for value in bucket.items():
+            for key, value in bucket.items():
                 # Collect all values in each bucket
-                values.append(value)
-        return values
+                values_list.append(value)
+        return values_list
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
