@@ -23,7 +23,12 @@
                     <h4 class="tweet-intro">Thousands of...faces thronged the windows, the doors, the dormer windows, the roofs, gazing at the palace, gazing at the populace...</h4>
                     <br>
                     <br>
-                    <button id="tweet-button" class="btn btn-outline-info" type="submit" name="button">What do the bells say?</button>
+                    (This button is still a WIP)
+                    <a href="{{ url_for ('index.html', sample_sentence=sample_sentence) }}">
+                        <button id="tweet-button" class="btn btn-outline-info" type="button">
+                            What do the bells say?
+                        </button>
+                    </a>
                     <br>
                     <br>
                     {% if sample_sentence %}

@@ -13,8 +13,9 @@ body {
 #tweet h1 {
     font-family: 'Playball', cursive;
 }
-.btn, #tweet-button {
+.btn {
     font-family: 'Nunito', cursive;
+    background-color: #000;
 }
 #show-tweet {
     font-family: 'Playball', cursive;
