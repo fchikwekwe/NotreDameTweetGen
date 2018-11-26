@@ -15,7 +15,6 @@ body {
 }
 .btn, #tweet-button {
     font-family: 'Nunito', cursive;
-    background-color: #cc9976;
 }
 #show-tweet {
     font-family: 'Playball', cursive;
