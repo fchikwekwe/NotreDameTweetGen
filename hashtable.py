@@ -71,8 +71,12 @@ class HashTable(object):
         TODO: Running time: O(???) Why and under what conditions?"""
         # Find bucket where given key belongs
         bucket_index = self._bucket_index(key)
-        # if the key has an index, then True
-        if bucket_index:
+        print("bucket #:", bucket_index)
+        bucket = self.buckets[bucket_index]
+        # if key-value entry exists in bucket, then return True
+        # using lambda function to get inside inner tuple
+        pair = bucket.find(lambda tuple: tuple[0] == key)
+        if pair:
             return True
         # else False
         return False
@@ -86,10 +90,10 @@ class HashTable(object):
         print("bucket: {}".format(bucket))
 
         # Check if key-value entry exists in bucket
-        if key in bucket.items():
-            print("items: " + bucket.items())
+        pair = bucket.find(lambda tuple: tuple[0] == key)
+        if pair:
             # If found, return value associated with given key
-            return value
+            return pair[1] # this is the value
         # Otherwise, raise error
         raise KeyError('Key not found: {}'.format(key))
 
@@ -100,26 +104,29 @@ class HashTable(object):
         bucket_index = self._bucket_index(key)
         bucket = self.buckets[bucket_index]
         # Check if key-value entry exists in bucket
-        if key in bucket.items():
+        pair = bucket.find(lambda tuple: tuple[0] == key)
+        if pair:
             # If found, update value associated with given key
-            value = bucket.find(key)
-            print("value: {}".format(value))
-        else:
-            # Otherwise, insert given key-value entry into bucket
-            new_pair = (key, value)
-            bucket.append(new_pair)
-            print("bucket: {}".format(bucket))
-
+            bucket.delete(pair)
+        # Otherwise, insert given key-value entry into bucket
+        bucket.append((key, value))
+        print("bucket: {}".format(bucket))
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
-        # TODO: Check if key-value entry exists in bucket
-        # TODO: If found, delete entry associated with given key
-        # TODO: Otherwise, raise error to tell user delete failed
-        # Hint: raise KeyError('Key not found: {}'.format(key))
-
+        # Find bucket where given key belongs
+        bucket_index = self._bucket_index(key)
+        bucket = self.buckets[bucket_index]
+        # Check if key-value entry exists in bucket
+        pair = bucket.find(lambda tuple: tuple[0] == key)
+        print(pair)
+        # If found, delete entry associated with given key
+        if pair:
+            bucket.delete(pair)
+        # Otherwise, raise error to tell user delete failed
+        else:
+            raise KeyError('Key not found: {}'.format(key))
 
 def test_hash_table():
     """ tests implemented hashtable """
@@ -141,7 +148,7 @@ def test_hash_table():
     print('length: {}'.format(ht.length()))
 
     # Enable this after implementing delete method
-    delete_implemented = False
+    delete_implemented = True
     if delete_implemented:
         print('\nTesting delete:')
         for key in ['I', 'V', 'X']:
