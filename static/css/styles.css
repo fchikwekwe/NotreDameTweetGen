@@ -19,6 +19,7 @@ body {
 }
 #show-tweet {
     font-family: 'Playball', cursive;
+    font-size: 20px;
 }
 #tweet p {
     font-family: 'El Messiri', sans-serif;
