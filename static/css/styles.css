@@ -20,6 +20,10 @@ body {
 #show-tweet {
     font-family: 'Playball', cursive;
 }
+#tweet p {
+    font-family: 'El Messiri', sans-serif;
+}
+
 
 /*
 Fonts:
