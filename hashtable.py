@@ -3,8 +3,8 @@
 from linkedlist import LinkedList
 
 class HashTable(object):
-    """ This class inherits from the python object class and its methods
-    lend functionality to a HashTable"""
+    """ This class creates a working hashtable that can be used
+    in other projects"""
 
     def __init__(self, init_size=8):
         """Initialize this hash table with the given initial size."""
@@ -27,11 +27,12 @@ class HashTable(object):
 
     def keys(self):
         """Return a list of all keys in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running Time: O(n) because you would need to traverse all buckets and
+        search them for key"""
         # Collect all keys in each bucket
         keys_list = []
         for bucket in self.buckets:
-            print(bucket)
+            # print(bucket)
             for key, value in bucket.items():
                 print("key: {}, value: {}".format(key, value))
                 keys_list.append(key)
@@ -39,7 +40,8 @@ class HashTable(object):
 
     def values(self):
         """Return a list of all values in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running Time: O(n) because you would need to traverse all buckets and
+        search them for key"""
         values_list = []
         # Loop through all buckets
         for bucket in self.buckets:
@@ -50,7 +52,7 @@ class HashTable(object):
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(n) because you must traverse all buckets"""
         # Collect all pairs of key-value entries in each bucket
         all_items = []
         for bucket in self.buckets:
@@ -59,7 +61,8 @@ class HashTable(object):
 
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(n) because you must traverse all buckets and all
+        keys within buckets to get the length of each"""
         count = 0
         # Loop through all buckets
         for bucket in self.buckets:
@@ -70,7 +73,10 @@ class HashTable(object):
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: Best case O(1) if given key is the first item
+        the first bucket; Worse case O(n) where 'n' is the number of key-value
+        entries in the hash table. You need to traverse all buckets and search
+        them for key"""
         # Find bucket where given key belongs
         bucket_index = self._bucket_index(key)
         print("bucket #:", bucket_index)
@@ -85,7 +91,10 @@ class HashTable(object):
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: Best case O(1) if given key is the first item
+        the first bucket; Worse case O(n) where 'n' is the number of key-value
+        entries in the hashtable. You would need to traverse all buckets
+        and search them for key"""
         # Find bucket where given key belongs
         bucket_index = self._bucket_index(key)
         bucket = self.buckets[bucket_index]
@@ -101,7 +110,10 @@ class HashTable(object):
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: Best case O(1) if given key is the first item
+        the first bucket; Worse case O(n) where 'n' is the number of key-value
+        entries in the hashtable. You would need to traverse all buckets
+        and search them for key"""
         # Find bucket where given key belongs
         bucket_index = self._bucket_index(key)
         bucket = self.buckets[bucket_index]
@@ -116,7 +128,9 @@ class HashTable(object):
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: Best case O(1) if given key is the first item
+        the first bucket; Worse case O(n) because you would need to traverse
+        all buckets and search them for key"""
         # Find bucket where given key belongs
         bucket_index = self._bucket_index(key)
         bucket = self.buckets[bucket_index]
@@ -132,22 +146,22 @@ class HashTable(object):
 
 def test_hash_table():
     """ tests implemented hashtable """
-    ht = HashTable()
-    print('hash table: {}'.format(ht))
+    test_hashtable = HashTable()
+    print('hash table: {}'.format(test_hashtable))
 
     print('\nTesting set:')
     for key, value in [('I', 1), ('V', 5), ('X', 10)]:
         print('set({!r}, {!r})'.format(key, value))
-        ht.set(key, value)
-        print('hash table: {}'.format(ht))
+        test_hashtable.set(key, value)
+        print('hash table: {}'.format(test_hashtable))
 
     print('\nTesting get:')
     for key in ['I', 'V', 'X']:
-        value = ht.get(key)
+        value = test_hashtable.get(key)
         print('get({!r}): {!r}'.format(key, value))
 
-    print('contains({!r}): {}'.format('X', ht.contains('X')))
-    print('length: {}'.format(ht.length()))
+    print('contains({!r}): {}'.format('X', test_hashtable.contains('X')))
+    print('length: {}'.format(test_hashtable.length()))
 
     # Enable this after implementing delete method
     delete_implemented = True
@@ -155,11 +169,11 @@ def test_hash_table():
         print('\nTesting delete:')
         for key in ['I', 'V', 'X']:
             print('delete({!r})'.format(key))
-            ht.delete(key)
-            print('hash table: {}'.format(ht))
+            test_hashtable.delete(key)
+            print('hash table: {}'.format(test_hashtable))
 
-        print('contains(X): {}'.format(ht.contains('X')))
-        print('length: {}'.format(ht.length()))
+        print('contains(X): {}'.format(test_hashtable.contains('X')))
+        print('length: {}'.format(test_hashtable.length()))
 
 
 if __name__ == '__main__':

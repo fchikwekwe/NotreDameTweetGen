@@ -53,7 +53,8 @@ class LinkedList(object):
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(n) This is best case because must traverse
+        every node in order to get count with this method"""
         node_count = 0
         current = self.head
         # Loop through all nodes and count one for each
@@ -64,7 +65,9 @@ class LinkedList(object):
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(1) This is both best and worse case because
+        it simply requires you to check for the current node and add
+        the new node"""
         # Create new node to hold given item
         new_node = Node(item)
         # Append node after tail, if it exists
@@ -77,7 +80,8 @@ class LinkedList(object):
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(1) This is best and worse case for
+        same reasons as above"""
         # Create new node to hold given item
         new_node = Node(item)
         # Prepend node before head, if it exists
@@ -90,8 +94,9 @@ class LinkedList(object):
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
+        TODO: Best case running time: O(1) If the found node is the first one
+        TODO: Worst case running time: O(n) If you have to traverse all nodes
+        because the found node is later in the list or not found"""
         current = self.head
         found_quality = False
         # Loop through all nodes
@@ -106,8 +111,8 @@ class LinkedList(object):
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
+        TODO: Best case running time: O(1) same as find()
+        TODO: Worst case running time: O(n) Same as find()"""
         # keeping track of current node, last node and if node is found
         current = self.head
         last = None
@@ -134,6 +139,8 @@ class LinkedList(object):
             self.tail = last
 
     def replace(self, old_data, new_data):
+        """ Running time: Best case O(1) same as find; Worst case O(n)
+        same as find """
         current = self.head
         found_node = False
         # keep track of current node and if node is found
