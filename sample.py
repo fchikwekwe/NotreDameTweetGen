@@ -6,9 +6,10 @@ def cumulative_distribution(histogram):
     """compute the cumulative distribution function given pdf"""
     cumulative = []
     sum = 0
-    for i, j in enumerate(histogram):
-        sum += j[1]
-        cumulative.append((j[0], sum))
+    for key, value in histogram.items():
+        # print("key, value:", key, value)
+        sum += value
+        cumulative.append((key, sum))
     return cumulative
 
 def binary_search(cumulative, target):

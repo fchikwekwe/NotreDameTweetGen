@@ -24,36 +24,60 @@ def markov_model(text_list):
     # return dictionary
     return markov_dict
 
-def start_words(dictionary):
-    # before entering loop get a 'start' word from dictionary
-    start_words = []
+def start_token(dictionary):
+    """ Get words that can start a sentence """
+    start_tokens = []
     for key in dictionary:
         if key.islower() is False:
-            start_words.append(key)
-    word = random.choice(start_words)
-    return word
+            start_tokens.append(key)
+    token = random.choice(start_tokens)
+    return token
 
-def create_sentence(start_word, dictionary):
+def stop_token(dictionary):
+    """ Get words that can end a sentence"""
+    stop_tokens = []
+    for key, value in dictionary.items():
+        if key.endswith('.'):
+            print("word with .", key)
+            stop_tokens.append(key)
+
+        for k, v in value.items():
+            if k.endswith('.'):
+                print("word with .", k)
+                stop_tokens.append(k)
+    return stop_tokens
+
+def create_sentence(start_token, stop_tokens, dictionary):
     # create sentence and add first word
     sentence = []
-    sentence.append(start_word)
-    print("sentence with just first word:", sentence)
+    sentence.append(start_token)
 
-    word = start_word
-    for key, value in dictionary:
-        if key == word:
-            # sample from histogram of values
-            sample.sample(value)
-            break
-
-    # exit dictionary and look for key
-    # stop when word is not found
+    word = start_token
+    print("word:", word)
+    # stop when word is a stop token
+    while word not in stop_tokens:
+        for key, value in dictionary.items():
+            if key == word:
+                # sample from histogram of values
+                print("value:", value)
+                cumulative = sample.cumulative_distribution(value)
+                sample_word = sample.sample(cumulative)
+                # add new word to sentence
+                sentence.append(sample_word)
+                word = sample_word
+                print("word:", word)
+                # get out of for loop and start process over
+                break
+    return sentence
 
 def main():
     example_list = ["One", "fish,", "two", "fish,", "red", "fish,", "blue", "fish."]
     dictionary = markov_model(example_list)
-    first_word = start_words(dictionary)
-    markov_sentence = create_sentence(first_word, dictionary)
+    print(dictionary)
+    first_word = start_token(dictionary)
+    end_words = stop_token(dictionary)
+    print("end_words:", end_words)
+    markov_sentence = create_sentence(first_word, end_words, dictionary)
     print(" ".join(markov_sentence))
 
 if __name__ == '__main__':
