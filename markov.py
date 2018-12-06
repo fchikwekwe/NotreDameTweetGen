@@ -1,8 +1,6 @@
+import random
+import sample
 from dictogram import Dictogram
-# import sample
-
-# make a dictionary that stores
-# get a random word to start with
 
 """main is defined outside of the Dictogram class, but inside dictogram file
     main function takes a list as its parameter"""
@@ -26,15 +24,37 @@ def markov_model(text_list):
     # return dictionary
     return markov_dict
 
-def create_sentence(dictionary):
-    sentence = []
+def start_words(dictionary):
+    # before entering loop get a 'start' word from dictionary
+    start_words = []
     for key in dictionary:
-        if key != "sitting.":
-            sentence.append(key)
-    return sentence
+        if key.islower() is False:
+            start_words.append(key)
+    word = random.choice(start_words)
+    return word
+
+def create_sentence(start_word, dictionary):
+    # create sentence and add first word
+    sentence = []
+    sentence.append(start_word)
+    print("sentence with just first word:", sentence)
+
+    word = start_word
+    for key, value in dictionary:
+        if key == word:
+            # sample from histogram of values
+            sample.sample(value)
+            break
+
+    # exit dictionary and look for key
+    # stop when word is not found
+
+def main():
+    example_list = ["One", "fish,", "two", "fish,", "red", "fish,", "blue", "fish."]
+    dictionary = markov_model(example_list)
+    first_word = start_words(dictionary)
+    markov_sentence = create_sentence(first_word, dictionary)
+    print(" ".join(markov_sentence))
 
 if __name__ == '__main__':
-    example_list = ["And", "the", "Raven,", "never", "flitting,", "still", "is", "sitting,", "still", "is", "sitting."]
-    dictionary = markov_model(example_list)
-    markov_sentence = create_sentence(dictionary)
-    print(" ".join(markov_sentence))
+    main()

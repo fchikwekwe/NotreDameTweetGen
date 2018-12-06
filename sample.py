@@ -44,15 +44,15 @@ def read_hist(text_file):
             histogram.append((hist_entry[0], int(hist_entry[1])))
     return histogram
 
-def num_of_words(num):
+def num_of_words(text, num):
     """use this functions to return a certain number of totally random words"""
     all_words = []
     if num >= 1:
         for i in range(num):
-            word = sample(cumulative_distribution(read_hist("histogram.txt")))
+            word = sample(cumulative_distribution(read_hist(text)))
             all_words.append(word)
     else:
-        word = sample(cumulative_distribution(read_hist("histogram.txt")))
+        word = sample(cumulative_distribution(read_hist(text)))
         all_words.append(word)
     return all_words
 

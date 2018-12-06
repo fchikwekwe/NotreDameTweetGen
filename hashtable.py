@@ -1,4 +1,7 @@
-""" This class creates a HashTable that can be used modularly in other files """
+""" This class creates a HashTable that can be used modularly in other files
+n = key-value entries in HashTable
+b = number of buckets
+l = nodes in each bucket (LinkedList)"""
 
 from linkedlist import LinkedList
 
@@ -62,7 +65,8 @@ class HashTable(object):
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
         TODO: Running time: O(n) because you must traverse all buckets and all
-        keys within buckets to get the length of each"""
+        keys within buckets to get the length of each; if you use the .size
+        property, then it would be O(b)"""
         count = 0
         # Loop through all buckets
         for bucket in self.buckets:
@@ -74,9 +78,8 @@ class HashTable(object):
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
         TODO: Running time: Best case O(1) if given key is the first item
-        the first bucket; Worse case O(n) where 'n' is the number of key-value
-        entries in the hash table. You need to traverse all buckets and search
-        them for key"""
+        the first bucket; Worse case O(l) You need to traverse all buckets and
+        the found bucket for key"""
         # Find bucket where given key belongs
         bucket_index = self._bucket_index(key)
         print("bucket #:", bucket_index)
@@ -92,9 +95,8 @@ class HashTable(object):
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
         TODO: Running time: Best case O(1) if given key is the first item
-        the first bucket; Worse case O(n) where 'n' is the number of key-value
-        entries in the hashtable. You would need to traverse all buckets
-        and search them for key"""
+        the first bucket; Worse case O(l) You need to traverse all buckets and
+        the found bucket for key"""
         # Find bucket where given key belongs
         bucket_index = self._bucket_index(key)
         bucket = self.buckets[bucket_index]
@@ -111,9 +113,8 @@ class HashTable(object):
     def set(self, key, value):
         """Insert or update the given key with its associated value.
         TODO: Running time: Best case O(1) if given key is the first item
-        the first bucket; Worse case O(n) where 'n' is the number of key-value
-        entries in the hashtable. You would need to traverse all buckets
-        and search them for key"""
+        the first bucket; Worse case O(l) You need to traverse all buckets and
+        the found bucket for key"""
         # Find bucket where given key belongs
         bucket_index = self._bucket_index(key)
         bucket = self.buckets[bucket_index]
@@ -129,14 +130,13 @@ class HashTable(object):
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
         TODO: Running time: Best case O(1) if given key is the first item
-        the first bucket; Worse case O(n) because you would need to traverse
-        all buckets and search them for key"""
+        the first bucket; Worse case O(l) You need to traverse all buckets and
+        the found bucket for key"""
         # Find bucket where given key belongs
         bucket_index = self._bucket_index(key)
         bucket = self.buckets[bucket_index]
         # Check if key-value entry exists in bucket
         pair = bucket.find(lambda tuple: tuple[0] == key)
-        print(pair)
         # If found, delete entry associated with given key
         if pair:
             bucket.delete(pair)

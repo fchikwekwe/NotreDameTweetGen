@@ -53,8 +53,9 @@ class LinkedList(object):
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        Running time: O(n) This is best case because must traverse
-        every node in order to get count with this method"""
+        Running time: O(n) This is best case because must traverse every
+        bucket(b) and then count each node in each bucket in order to get count
+        with this method"""
         node_count = 0
         current = self.head
         # Loop through all nodes and count one for each

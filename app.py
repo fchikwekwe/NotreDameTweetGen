@@ -1,12 +1,19 @@
-from flask import Flask, render_template
+import sys
+import tokenize
+from dictogram import Dictogram
 import sample
+# from flask import Flask, render_template
 
-app = Flask(__name__)
+# APP = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
-def sample_function():
-    sample_sentence = " ".join(sample.num_of_words(4))
-    return render_template('index.html', sample_sentence=sample_sentence)
+# @APP.route('/', methods=['GET', 'POST'])
+def index():
+    random_walk = " ".join(sample.num_of_words(source, 4))
+    return render_template('index.html', random_walk=random_walk)
 
 if __name__ == '__main__':
-    sample_function()
+    source = "hunchback.txt"
+    token_list = tokenize.all_tokens(source)
+    dictogram = Dictogram(token_list)
+    # print(dictogram)
+    index()
