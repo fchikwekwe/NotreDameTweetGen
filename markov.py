@@ -4,6 +4,9 @@ from dictogram import Dictogram
 
 """main is defined outside of the Dictogram class, but inside dictogram file
     main function takes a list as its parameter"""
+def tokenize(text):
+    source = open(text, "r").read().split()
+    return source
 
 # takes in list of words
 def markov_model(text_list):
@@ -38,12 +41,12 @@ def stop_token(dictionary):
     stop_tokens = []
     for key, value in dictionary.items():
         if key.endswith('.'):
-            print("word with .", key)
+            # print("word with .", key)
             stop_tokens.append(key)
 
         for k, v in value.items():
             if k.endswith('.'):
-                print("word with .", k)
+                # print("word with .", k)
                 stop_tokens.append(k)
     return stop_tokens
 
@@ -53,32 +56,35 @@ def create_sentence(start_token, stop_tokens, dictionary):
     sentence.append(start_token)
 
     word = start_token
-    print("word:", word)
+    # print("word:", word)
     # stop when word is a stop token
     while word not in stop_tokens:
         for key, value in dictionary.items():
             if key == word:
                 # sample from histogram of values
-                print("value:", value)
+                # print("value:", value)
                 cumulative = sample.cumulative_distribution(value)
                 sample_word = sample.sample(cumulative)
                 # add new word to sentence
                 sentence.append(sample_word)
                 word = sample_word
-                print("word:", word)
+                # print("word:", word)
                 # get out of for loop and start process over
                 break
     return sentence
 
-def main():
-    example_list = ["One", "fish,", "two", "fish,", "red", "fish,", "blue", "fish."]
-    dictionary = markov_model(example_list)
-    print(dictionary)
+def main(source_text):
+    text_list = tokenize(source_text)
+    dictionary = markov_model(text_list)
+    # print(dictionary)
     first_word = start_token(dictionary)
     end_words = stop_token(dictionary)
-    print("end_words:", end_words)
-    markov_sentence = create_sentence(first_word, end_words, dictionary)
-    print(" ".join(markov_sentence))
+    markov_list = create_sentence(first_word, end_words, dictionary)
+    print(markov_list)
+    markov_sentence = " ".join(markov_list)
+    print(markov_sentence)
+    return markov_sentence
 
 if __name__ == '__main__':
-    main()
+    # source_text = ["One", "fish,", "two", "fish,", "red", "fish,", "blue", "fish."]
+    main(source_text)

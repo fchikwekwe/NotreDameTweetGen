@@ -19,8 +19,8 @@
                 </div>
                 <div class="col-md-8 mx-auto" id="tweet">
                     <h1>Tweet Générateur de Notre-Dame de Paris</h1>
-                    <h4 class="tweet-intro">[On that morning,]...the Parisians awoke to the sound of all the bells in the triple circuit of the city...ringing...</h4>
-                    <h4 class="tweet-intro">Thousands of...faces thronged the windows, the doors, the dormer windows, the roofs, gazing at the palace, gazing at the populace...</h4>
+                    <p class="tweet-intro">[On that morning,]...the Parisians awoke to the sound of all the bells in the triple circuit of the city...ringing...</p>
+                    <p class="tweet-intro">Thousands of...faces thronged the windows, the doors, the dormer windows, the roofs, gazing at the palace, gazing at the populace...</p>
                     <br>
                     <br>
                     <p>(This button is still a WIP)</p>
@@ -29,10 +29,10 @@
                     </button>
                     <br>
                     <br>
-                    {% if sample_sentence %}
-                    <p class="show-tweet">" {{ sample_sentence }} ."</p>
+                    {% if final_sentence %}
+                    <p class="show-tweet">" {{ final_sentence }}"</p>
                     {% else %}
-                    <p>...the bells of Notre Dame...</p>
+                    <p class="show-tweet">...the bells of Notre Dame...</p>
                     {% endif %}
                 </div>
                 <div class="col-md-2">

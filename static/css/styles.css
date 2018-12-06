@@ -10,7 +10,7 @@ body {
 .tweet-intro {
     font-family: 'El Messiri', sans-serif;
 }
-#tweet h1 {
+#tweet {
     font-family: 'Playball', cursive;
 }
 .btn {
@@ -19,15 +19,12 @@ body {
 }
 #show-tweet {
     font-family: 'Playball', cursive;
-    font-size: 20px;
-}
-#tweet p {
-    font-family: 'El Messiri', sans-serif;
+    font-size: 30px;
 }
 
 
 /*
-Fonts:
+Imported Fonts:
 font-family: 'Nunito', sans-serif;
 font-family: 'Playball', cursive;
 font-family: 'El Messiri', sans-serif;
