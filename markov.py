@@ -62,7 +62,7 @@ def stop_token(dictionary):
     stop_tokens = []
     for key, value in dictionary.items():
         # the key number must be changed depending on order number
-        if key[2].endswith('.'):
+        if key[2].endswith('.') or key[2].endswith('?'):
             # print("word with .", key)
             stop_tokens.append(key)
 
