@@ -1,3 +1,8 @@
+""" Series of functions that take in a text file, clean it, tokenize it and make
+it into a markov chain. The output is made into a sentence based on the
+conditions established below. The entire process can also be benchmarked for
+improving algorithmic speed """
+
 import re # so that we can do text cleanup
 import time # needed to record performance time
 import datetime # needed to record when trials are done
@@ -5,23 +10,23 @@ import random
 import sample # to get words for sentence
 from dictogram import Dictogram
 
-"""main is defined outside of the Dictogram class, but inside dictogram file
-    main function takes a list as its parameter"""
-
 def cleanup(text):
+    """ takes in a text file, opens it and cleans text using regex. outputs
+    string of cleaned text """
     with open(text, 'r') as source_text:
         # print(source_text.read())
-        new_text = re.sub('[A-Z]{3,}', ' ', source_text.read())
+        no_chapters = re.sub('[A-Z]{3,}', ' ', source_text.read())
+        new_text = re.sub('(\s\.){4,}', '', no_chapters)
     return new_text
 
 def tokenize(text):
-    """ takes in clean text as string and makes it into a list """
+    """ takes in cleaned text as string and makes it into a list of tokens """
     source = text.split()
     return source
 
 # takes in list of words
 def first_order_markov(text_list):
-    """ this function takes in a word and checks to see what words come after it
+    """ takes in a word and checks to see what words come after it
     to determine the word sequence for our generated markov chain"""
     markov_dict = dict()
     # for each word in list, key is word and value is dictogram
@@ -89,21 +94,21 @@ def create_sentence(start_token, stop_tokens, dictionary):
 
     current_token = start_token
     # stop when current_token is a stop token
-    if len(sentence) <= 8:
-        while current_token not in stop_tokens:
-            for key, value in dictionary.items():
-                if key == current_token:
-                    # sample from histogram of values
-                    cumulative = sample.cumulative_distribution(value)
-                    sample_word = sample.sample(cumulative)
-                    # add new sample to sentence_list
-                    sentence.append(sample_word)
-                    # assign second word of key and value to current token
-                    # this is hard coded; must be changed to fit the order number
-                    (current_token_one, current_token_two, current_token_three) = current_token
-                    current_token = (current_token_two, current_token_three, sample_word)
-                    # get out of for loop and start process over
-                    break
+
+    while current_token not in stop_tokens or len(sentence) <= 8:
+        for key, value in dictionary.items():
+            if key == current_token:
+                # sample from histogram of values
+                cumulative = sample.cumulative_distribution(value)
+                sample_word = sample.sample(cumulative)
+                # add new sample to sentence_list
+                sentence.append(sample_word)
+                # assign second word of key and value to current token
+                # this is hard coded; must be changed to fit the order number
+                (current_token_one, current_token_two, current_token_three) = current_token
+                current_token = (current_token_two, current_token_three, sample_word)
+                # get out of for loop and start process over
+                break
     return sentence
 
 def logger(file):
