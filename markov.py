@@ -53,7 +53,6 @@ def start_token(dictionary):
     for key in dictionary:
         if key[0].islower() is False and key[0].endswith('.') is False:
             start_tokens.append(key)
-    print(start_tokens)
     token = random.choice(start_tokens)
     return token
 
@@ -65,8 +64,6 @@ def stop_token(dictionary):
         if key[2].endswith('.') or key[2].endswith('?'):
             # print("word with .", key)
             stop_tokens.append(key)
-
-    # print("stop tokens:", stop_tokens)
     return stop_tokens
 
 def create_sentence(start_token, stop_tokens, dictionary):
