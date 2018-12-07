@@ -51,9 +51,9 @@ def start_token(dictionary):
     """ Get words that can start a sentence """
     start_tokens = []
     for key in dictionary:
-        if key[0].islower() is False:
+        if key[0].islower() is False and key[0].endswith('.') is False:
             start_tokens.append(key)
-    # print(start_tokens)
+    print(start_tokens)
     token = random.choice(start_tokens)
     return token
 
@@ -81,20 +81,21 @@ def create_sentence(start_token, stop_tokens, dictionary):
 
     current_token = start_token
     # stop when current_token is a stop token
-    while current_token not in stop_tokens:
-        for key, value in dictionary.items():
-            if key == current_token:
-                # sample from histogram of values
-                cumulative = sample.cumulative_distribution(value)
-                sample_word = sample.sample(cumulative)
-                # add new sample to sentence_list
-                sentence.append(sample_word)
-                # assign second word of key and value to current token
-                # this is hard coded; must fit the order number
-                (current_token_one, current_token_two, current_token_three) = current_token
-                current_token = (current_token_two, current_token_three, sample_word)
-                # get out of for loop and start process over
-                break
+    if len(sentence) <= 8:
+        while current_token not in stop_tokens:
+            for key, value in dictionary.items():
+                if key == current_token:
+                    # sample from histogram of values
+                    cumulative = sample.cumulative_distribution(value)
+                    sample_word = sample.sample(cumulative)
+                    # add new sample to sentence_list
+                    sentence.append(sample_word)
+                    # assign second word of key and value to current token
+                    # this is hard coded; must fit the order number
+                    (current_token_one, current_token_two, current_token_three) = current_token
+                    current_token = (current_token_two, current_token_three, sample_word)
+                    # get out of for loop and start process over
+                    break
     return sentence
 
 def main(source_text):
