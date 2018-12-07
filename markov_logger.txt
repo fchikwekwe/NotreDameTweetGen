@@ -1,0 +1,13 @@
+
+
+    Current date and time: 2018-12-07 10:28:36.411673
+    Program ran in 5.919824 seconds.
+
+    Current date and time: 2018-12-07 10:29:55.153523
+    Program ran in 5.168576 seconds.
+
+    Current date and time: 2018-12-07 10:30:06.845373
+    Program ran in 5.017900999999999 seconds.
+
+    Current date and time: 2018-12-07 10:30:21.519413
+    Program ran in 7.566552000000001 seconds.

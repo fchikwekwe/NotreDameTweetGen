@@ -1,5 +1,7 @@
+import time # needed to record performance time
+import datetime # needed to record when trials are done
 import random
-import sample
+import sample # to get words for sentence
 from dictogram import Dictogram
 
 """main is defined outside of the Dictogram class, but inside dictogram file
@@ -48,7 +50,8 @@ def nth_order_markov(order, text_list):
     return markov_dict
 
 def start_token(dictionary):
-    """ Get words that can start a sentence """
+    """ Get words that can start a sentence; this method is O(n) worst case
+    because one must check every word in the corpus"""
     start_tokens = []
     for key in dictionary:
         if key[0].islower() is False and key[0].endswith('.') is False:
@@ -95,9 +98,16 @@ def create_sentence(start_token, stop_tokens, dictionary):
                     break
     return sentence
 
-def main(source_text):
+def logger(file):
+    f = open(file, "a")
+    f.write("""
+
+    Current date and time: {}
+    Program ran in {} seconds.""".format(datetime.datetime.now(), time.process_time() - start_time))
+    return 'hello'
+
+def main(text_list):
     """ calling functions and defining variables """
-    text_list = tokenize(source_text)
     dictionary = nth_order_markov(3, text_list)
     first_word = start_token(dictionary)
     end_words = stop_token(dictionary)
@@ -107,5 +117,10 @@ def main(source_text):
     return markov_sentence
 
 if __name__ == '__main__':
+    # start_time = time.process_time()
+
     source_text = 'corpus.txt'
-    main(source_text)
+    text_list = tokenize(source_text)
+    main(text_list)
+
+    # logger('markov_logger.txt')
