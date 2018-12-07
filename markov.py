@@ -1,3 +1,4 @@
+import re # so that we can do text cleanup
 import time # needed to record performance time
 import datetime # needed to record when trials are done
 import random
@@ -6,9 +7,16 @@ from dictogram import Dictogram
 
 """main is defined outside of the Dictogram class, but inside dictogram file
     main function takes a list as its parameter"""
+
+def cleanup(text):
+    with open(text, 'r') as source_text:
+        # print(source_text.read())
+        new_text = re.sub('[A-Z]{3,}', ' ', source_text.read())
+    return new_text
+
 def tokenize(text):
-    """ makes text into a list """
-    source = open(text, "r").read().split()
+    """ takes in clean text as string and makes it into a list """
+    source = text.split()
     return source
 
 # takes in list of words
@@ -120,7 +128,8 @@ if __name__ == '__main__':
     # start_time = time.process_time()
 
     source_text = 'corpus.txt'
-    text_list = tokenize(source_text)
+    clean_text = cleanup(source_text)
+    text_list = tokenize(clean_text)
     main(text_list)
 
     # logger('markov_logger.txt')
