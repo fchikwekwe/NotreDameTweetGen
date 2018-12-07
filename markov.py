@@ -88,7 +88,7 @@ def create_sentence(start_token, stop_tokens, dictionary):
                     # add new sample to sentence_list
                     sentence.append(sample_word)
                     # assign second word of key and value to current token
-                    # this is hard coded; must fit the order number
+                    # this is hard coded; must be changed to fit the order number
                     (current_token_one, current_token_two, current_token_three) = current_token
                     current_token = (current_token_two, current_token_three, sample_word)
                     # get out of for loop and start process over
@@ -107,5 +107,5 @@ def main(source_text):
     return markov_sentence
 
 if __name__ == '__main__':
-    source_text = 'hunchback.txt'
+    source_text = 'corpus.txt'
     main(source_text)

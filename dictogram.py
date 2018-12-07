@@ -3,6 +3,7 @@ from __future__ import division, print_function # Python 2 and 3 compatability
 class Dictogram(dict):
     """Dictogram is a histogram implemented as a subclass of the dictionary type"""
 
+
     def __init__(self, word_list=None):
         """Initialize this histogram as a new dictionary and count given words"""
         super(Dictogram, self).__init__() # Initialize this as a new dictionary

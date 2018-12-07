@@ -4,7 +4,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-source = "hunchback.txt"
+source = "corpus.txt"
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
