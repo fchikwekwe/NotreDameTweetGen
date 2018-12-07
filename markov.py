@@ -13,10 +13,11 @@ from dictogram import Dictogram
 def cleanup(text):
     """ takes in a text file, opens it and cleans text using regex. outputs
     string of cleaned text """
-    with open(text, 'r') as source_text:
+    with open(text, 'r') as uncleaned_text:
         # print(source_text.read())
-        no_chapters = re.sub('[A-Z]{3,}', ' ', source_text.read())
-        new_text = re.sub('(\s\.){4,}', '', no_chapters)
+        no_chapters = re.sub('[A-Z]{3,}', ' ', uncleaned_text.read())
+        remove_periods = re.sub('(\s\.){4,}', '', no_chapters)
+        new_text = re.sub('\*', '', remove_periods)
     return new_text
 
 def tokenize(text):
@@ -131,7 +132,6 @@ def main(text_list):
 
 if __name__ == '__main__':
     # start_time = time.process_time()
-
     source_text = 'corpus.txt'
     clean_text = cleanup(source_text)
     text_list = tokenize(clean_text)

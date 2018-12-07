@@ -1,12 +1,11 @@
 # import sys
 import markov
-import cleanup
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
 source_text = "corpus.txt"
-cleaned_text = cleanup.cleanup(source_text)
+cleaned_text = markov.cleanup(source_text)
 text_list = markov.tokenize(cleaned_text)
 
 @app.route('/', methods=['GET', 'POST'])
