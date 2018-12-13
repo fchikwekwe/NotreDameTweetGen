@@ -51,7 +51,7 @@ def nth_order_markov(order, text_list):
     # for each word in list, key is word and value is dictogram
     for index in range(len(text_list) - order):
         # text_list[index] should be our word from list
-        window = tuple(text_list[index: index+order])
+        window = tuple(text_list[index: index + order])
         # check if key is stored already
         if window in markov_dict:
             # if it is, then append it to the existing histogram
@@ -60,7 +60,6 @@ def nth_order_markov(order, text_list):
             # if not, create new entry with window as key and dictogram as value
             markov_dict[window] = Dictogram([text_list[index + order]])
     # return dictionary
-    # print(markov_dict)
     return markov_dict
 
 def start_token(dictionary):
@@ -87,15 +86,16 @@ def create_sentence(start_token, stop_tokens, dictionary):
     """ takes dictionary, start and end tokens and makes a sentence """
     # create sentence and add first word
     sentence = []
-    # this is hard coded; must be changed to fit the order number
+    # this is hard coded; must be changed to fit the order number; currently third
     (word1, word2, word3) = start_token
     sentence.append(word1)
     sentence.append(word2)
     sentence.append(word3)
+    # print("There should be three words", sentence)
 
     current_token = start_token
+    # print("This is my dictionary", dictionary)
     # stop when current_token is a stop token
-
     while current_token not in stop_tokens or len(sentence) <= 8:
         for key, value in dictionary.items():
             if key == current_token:
@@ -106,6 +106,7 @@ def create_sentence(start_token, stop_tokens, dictionary):
                 sentence.append(sample_word)
                 # assign second word of key and value to current token
                 # this is hard coded; must be changed to fit the order number
+                # I am unpacking the current token
                 (current_token_one, current_token_two, current_token_three) = current_token
                 current_token = (current_token_two, current_token_three, sample_word)
                 # get out of for loop and start process over
