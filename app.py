@@ -8,6 +8,8 @@ source_text = "corpus.txt"
 cleaned_text = markov.cleanup(source_text)
 text_list = markov.tokenize(cleaned_text)
 
+app.markov = create_markov(...)
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     final_sentence = markov.main(text_list)
@@ -15,3 +17,6 @@ def index():
 
 if __name__ == '__main__':
     index()
+
+
+# flask app startup setup function

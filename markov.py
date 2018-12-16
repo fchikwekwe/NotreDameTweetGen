@@ -128,7 +128,7 @@ def main(text_list):
     end_words = stop_token(dictionary)
     markov_list = create_sentence(first_word, end_words, dictionary)
     markov_sentence = " ".join(markov_list)
-    print(markov_sentence)
+    # print(markov_sentence)
     return markov_sentence
 
 if __name__ == '__main__':
