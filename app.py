@@ -1,4 +1,3 @@
-# import sys
 import markov
 from flask import Flask, render_template
 
@@ -9,7 +8,7 @@ cleaned_text = markov.cleanup(source_text)
 text_list = markov.tokenize(cleaned_text)
 # create a data structure to hold random_sentences
 
-app.markov = create_markov(...)
+# app.markov = create_markov(...)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
