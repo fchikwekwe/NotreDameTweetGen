@@ -9,6 +9,17 @@
     font-size: 20px;
 }
 
+div#loading {
+    top: 200px;
+    margin: auto;
+    position: absolute;
+    z-index: 1000;
+    width: 160px;
+    height: 24px;
+    background: red;
+    cursor: wait;
+}
+
 .show-tweet {
     font-family: 'El Messiri', sans-serif;
     font-size: 30px;
