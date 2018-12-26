@@ -19,7 +19,12 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 mx-auto tweet">
-                    <h1 id="title">Tweet Générateur de Notre-Dame de Paris</h1>
+                    <div id="title">
+                        <h1>Welcome to...</h1>
+                        <h2>Le Générateur de Tweet Notre Dame de Paris</h2>
+                        <h4>(Forgive the bad french!)</h4>
+                    </div>
+
                     <p class="tweet-intro">[On that morning,]...the Parisians awoke to the sound of all the bells in the triple circuit of the city...ringing...</p>
                     <!-- <p class="tweet-intro">Thousands of...faces thronged the windows, the doors, the dormer windows, the roofs, gazing at the palace, gazing at the populace...</p> -->
                     <br>
@@ -27,7 +32,6 @@
                     <!-- <button id="tweet-button" class="btn btn-outline-info" type="button">
                         What do the bells say?
                     </button> -->
-                    <br>
                     <br>
                     {% if final_sentence %}
                     <p class="show-tweet">" {{ final_sentence }}"</p>
