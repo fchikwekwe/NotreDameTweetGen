@@ -79,7 +79,7 @@ def logger(logger_file, data_structure, histogram, unique_words, word, frequency
     """.format(data_structure, histogram, unique_words, word, frequency))
 
 if __name__ in '__main__':
-    source_text = get_source_text("hunchback.txt")
+    source_text = get_source_text('souls_of_black_folk.txt')
     histogram = histogram(source_text)
     unique_words = unique_words(histogram)
     frequency = frequency("light", histogram)
