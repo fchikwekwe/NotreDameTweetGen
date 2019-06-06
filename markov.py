@@ -97,20 +97,19 @@ def create_sentence(start_token, stop_tokens, dictionary):
     # print("This is my dictionary", dictionary)
     # stop when current_token is a stop token
     while current_token not in stop_tokens or len(sentence) <= 8:
-        for key, value in dictionary.items():
-            if key == current_token:
-                # sample from histogram of values
-                cumulative = sample.cumulative_distribution(value)
-                sample_word = sample.sample(cumulative)
-                # add new sample to sentence_list
-                sentence.append(sample_word)
-                # assign second word of key and value to current token
-                # this is hard coded; must be changed to fit the order number
-                # I am unpacking the current token
-                (current_token_one, current_token_two, current_token_three) = current_token
-                current_token = (current_token_two, current_token_three, sample_word)
-                # get out of for loop and start process over
-                break
+        if current_token in dictionary: 
+            value = dictionary[current_token]
+            # sample from histogram of values
+            cumulative = sample.cumulative_distribution(value)
+            sample_word = sample.sample(cumulative)
+            # add new sample to sentence_list
+            sentence.append(sample_word)
+            # assign second word of key and value to current token
+            # this is hard coded; must be changed to fit the order number
+            # I am unpacking the current token
+            (current_token_one, current_token_two, current_token_three) = current_token
+            current_token = (current_token_two, current_token_three, sample_word)
+            # get out of for loop and start process over
     return sentence
 
 def logger(file):

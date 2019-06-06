@@ -10,6 +10,7 @@ def cumulative_distribution(histogram):
         # print("key, value:", key, value)
         sum += value
         cumulative.append((key, sum))
+    print(cumulative)
     return cumulative
 
 def binary_search(cumulative, target):
