@@ -65,10 +65,13 @@ def nth_order_markov(order, text_list):
 def start_token(dictionary):
     """ Get words that can start a sentence; this method is O(n) worst case
     because one must check every word in the corpus"""
-    start_tokens = []
-    for key in dictionary:
-        if key[0].islower() is False and key[0].endswith('.') is False:
-            start_tokens.append(key)
+    # rewritten with dict comprehension
+    start_tokens = [key for key in dictionary if key[0].islower() is False and key[0].endswith('.') is False]
+
+    # for key in dictionary:
+    #     if key[0].islower() is False and key[0].endswith('.') is False:
+    #         start_tokens.append(key)
+
     token = random.choice(start_tokens)
     return token
 
@@ -127,7 +130,6 @@ def main(text_list):
     end_words = stop_token(dictionary)
     markov_list = create_sentence(first_word, end_words, dictionary)
     markov_sentence = " ".join(markov_list)
-    # print(markov_sentence)
     return markov_sentence
 
 if __name__ == '__main__':
